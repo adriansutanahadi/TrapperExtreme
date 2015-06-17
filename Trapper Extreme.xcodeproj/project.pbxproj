@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FDD2B53C1B3191B1003F6660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */; };
+		FDD2B53E1B3191B1003F6660 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD2B53D1B3191B1003F6660 /* ViewController.swift */; };
+		FDD2B5411B3191B1003F6660 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD2B53F1B3191B1003F6660 /* Main.storyboard */; };
+		FDD2B5431B3191B1003F6660 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD2B5421B3191B1003F6660 /* Images.xcassets */; };
+		FDD2B5461B3191B1003F6660 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD2B5441B3191B1003F6660 /* LaunchScreen.xib */; };
+		FDD2B5521B3191B1003F6660 /* Trapper_ExtremeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD2B5511B3191B1003F6660 /* Trapper_ExtremeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FDD2B54C1B3191B1003F6660 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD2B52E1B3191B1003F6660 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDD2B5351B3191B1003F6660;
+			remoteInfo = "Trapper Extreme";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FDD2B5361B3191B1003F6660 /* Trapper Extreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trapper Extreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDD2B53A1B3191B1003F6660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FDD2B53D1B3191B1003F6660 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FDD2B5401B3191B1003F6660 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FDD2B5421B3191B1003F6660 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FDD2B5451B3191B1003F6660 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FDD2B54B1B3191B1003F6660 /* Trapper ExtremeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trapper ExtremeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDD2B5501B3191B1003F6660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDD2B5511B3191B1003F6660 /* Trapper_ExtremeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trapper_ExtremeTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FDD2B5331B3191B1003F6660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD2B5481B3191B1003F6660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FDD2B52D1B3191B1003F6660 = {
+			isa = PBXGroup;
+			children = (
+				FDD2B5381B3191B1003F6660 /* Trapper Extreme */,
+				FDD2B54E1B3191B1003F6660 /* Trapper ExtremeTests */,
+				FDD2B5371B3191B1003F6660 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FDD2B5371B3191B1003F6660 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDD2B5361B3191B1003F6660 /* Trapper Extreme.app */,
+				FDD2B54B1B3191B1003F6660 /* Trapper ExtremeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FDD2B5381B3191B1003F6660 /* Trapper Extreme */ = {
+			isa = PBXGroup;
+			children = (
+				FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */,
+				FDD2B53D1B3191B1003F6660 /* ViewController.swift */,
+				FDD2B53F1B3191B1003F6660 /* Main.storyboard */,
+				FDD2B5421B3191B1003F6660 /* Images.xcassets */,
+				FDD2B5441B3191B1003F6660 /* LaunchScreen.xib */,
+				FDD2B5391B3191B1003F6660 /* Supporting Files */,
+			);
+			path = "Trapper Extreme";
+			sourceTree = "<group>";
+		};
+		FDD2B5391B3191B1003F6660 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FDD2B53A1B3191B1003F6660 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDD2B54E1B3191B1003F6660 /* Trapper ExtremeTests */ = {
+			isa = PBXGroup;
+			children = (
+				FDD2B5511B3191B1003F6660 /* Trapper_ExtremeTests.swift */,
+				FDD2B54F1B3191B1003F6660 /* Supporting Files */,
+			);
+			path = "Trapper ExtremeTests";
+			sourceTree = "<group>";
+		};
+		FDD2B54F1B3191B1003F6660 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FDD2B5501B3191B1003F6660 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDD2B5351B3191B1003F6660 /* Trapper Extreme */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDD2B5551B3191B1003F6660 /* Build configuration list for PBXNativeTarget "Trapper Extreme" */;
+			buildPhases = (
+				FDD2B5321B3191B1003F6660 /* Sources */,
+				FDD2B5331B3191B1003F6660 /* Frameworks */,
+				FDD2B5341B3191B1003F6660 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trapper Extreme";
+			productName = "Trapper Extreme";
+			productReference = FDD2B5361B3191B1003F6660 /* Trapper Extreme.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FDD2B54A1B3191B1003F6660 /* Trapper ExtremeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDD2B5581B3191B1003F6660 /* Build configuration list for PBXNativeTarget "Trapper ExtremeTests" */;
+			buildPhases = (
+				FDD2B5471B3191B1003F6660 /* Sources */,
+				FDD2B5481B3191B1003F6660 /* Frameworks */,
+				FDD2B5491B3191B1003F6660 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FDD2B54D1B3191B1003F6660 /* PBXTargetDependency */,
+			);
+			name = "Trapper ExtremeTests";
+			productName = "Trapper ExtremeTests";
+			productReference = FDD2B54B1B3191B1003F6660 /* Trapper ExtremeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDD2B52E1B3191B1003F6660 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Denis Thamrin";
+				TargetAttributes = {
+					FDD2B5351B3191B1003F6660 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					FDD2B54A1B3191B1003F6660 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = FDD2B5351B3191B1003F6660;
+					};
+				};
+			};
+			buildConfigurationList = FDD2B5311B3191B1003F6660 /* Build configuration list for PBXProject "Trapper Extreme" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FDD2B52D1B3191B1003F6660;
+			productRefGroup = FDD2B5371B3191B1003F6660 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDD2B5351B3191B1003F6660 /* Trapper Extreme */,
+				FDD2B54A1B3191B1003F6660 /* Trapper ExtremeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDD2B5341B3191B1003F6660 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDD2B5411B3191B1003F6660 /* Main.storyboard in Resources */,
+				FDD2B5461B3191B1003F6660 /* LaunchScreen.xib in Resources */,
+				FDD2B5431B3191B1003F6660 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD2B5491B3191B1003F6660 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDD2B5321B3191B1003F6660 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDD2B53E1B3191B1003F6660 /* ViewController.swift in Sources */,
+				FDD2B53C1B3191B1003F6660 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD2B5471B3191B1003F6660 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDD2B5521B3191B1003F6660 /* Trapper_ExtremeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FDD2B54D1B3191B1003F6660 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDD2B5351B3191B1003F6660 /* Trapper Extreme */;
+			targetProxy = FDD2B54C1B3191B1003F6660 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FDD2B53F1B3191B1003F6660 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDD2B5401B3191B1003F6660 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FDD2B5441B3191B1003F6660 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDD2B5451B3191B1003F6660 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FDD2B5531B3191B1003F6660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FDD2B5541B3191B1003F6660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDD2B5561B3191B1003F6660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Trapper Extreme/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FDD2B5571B3191B1003F6660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Trapper Extreme/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FDD2B5591B3191B1003F6660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Trapper ExtremeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trapper Extreme.app/Trapper Extreme";
+			};
+			name = Debug;
+		};
+		FDD2B55A1B3191B1003F6660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Trapper ExtremeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trapper Extreme.app/Trapper Extreme";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FDD2B5311B3191B1003F6660 /* Build configuration list for PBXProject "Trapper Extreme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD2B5531B3191B1003F6660 /* Debug */,
+				FDD2B5541B3191B1003F6660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDD2B5551B3191B1003F6660 /* Build configuration list for PBXNativeTarget "Trapper Extreme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD2B5561B3191B1003F6660 /* Debug */,
+				FDD2B5571B3191B1003F6660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FDD2B5581B3191B1003F6660 /* Build configuration list for PBXNativeTarget "Trapper ExtremeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD2B5591B3191B1003F6660 /* Debug */,
+				FDD2B55A1B3191B1003F6660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FDD2B52E1B3191B1003F6660 /* Project object */;
+}
