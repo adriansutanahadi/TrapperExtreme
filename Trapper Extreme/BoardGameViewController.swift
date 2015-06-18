@@ -9,19 +9,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    var board: [[String?]]! = [[String?]]()
+class BoardGameViewController: UIViewController {
+    var board = Board<String>(boardDimension: 3)
     
-    
+ 
     func setUpBoard(){
-        for row in 0...3 {
-            for column in 0...3 {
-                self.board[row][column] = nil
-            }
-        }
-    
+        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
