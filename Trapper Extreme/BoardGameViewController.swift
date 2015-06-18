@@ -10,7 +10,7 @@
 import UIKit
 
 class BoardGameViewController: UIViewController {
-    var board = Board<String>(boardDimension: 3)
+    var board = Board<PieceType>(boardDimension: 3)
     
  
     func setUpBoard(){

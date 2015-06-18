@@ -9,7 +9,8 @@
 import Foundation
 
 class Board<T>{
-    private var board: [[T?]]! = [[T?]]()
+    //Private setter
+    private(set) var board: [[T?]]! = [[T?]]()
     
     let boardDimension: Int
     
@@ -20,7 +21,18 @@ class Board<T>{
                 self.board[row][column] = nil
             }
         }
-        
+    }
+    
+    // Index starts from 0,0 . x axis left to right,y axis up to down.
+    // Need to add more constraint, such as piece must beeiter Black or White ???
+    // If legal return true,else false
+    func addPiece(piece:T!,x:Int, y:Int) -> Bool{
+        if let isFree = self.board[x][y]{
+            self.board[x][y] = piece
+            return true
+        } else {
+            return false
+        }
     }
 
 }
