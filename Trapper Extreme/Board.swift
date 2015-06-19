@@ -10,17 +10,13 @@ import Foundation
 
 class Board<T>{
     //Private setter
-    private(set) var board: [[T?]]! = [[T?]]()
+    private(set) var board: [[T?]]!
     
     let boardDimension: Int
     
     init(boardDimension:Int){
         self.boardDimension =  boardDimension
-        for row in (0...boardDimension) {
-            for column in (0...boardDimension) {
-                self.board[row][column] = nil
-            }
-        }
+        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: nil  ))
     }
     
     // Index starts from 0,0 . x axis left to right,y axis up to down.

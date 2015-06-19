@@ -6,8 +6,49 @@
 //  Copyright (c) 2015 Denis Thamrin. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
-enum PieceType {
-    case BLACK,WHITE,CAPTURED_FREE,CAPTURED_WHITE,CAPTURED_BLACK,FREE
+enum PieceType: Int,Printable {
+    case Black = 0,White,CapturedFree,CapturedBlack,CapturedWhite,Free
+    
+    
+    var spriteName: String {
+        let spriteNames = [
+            "Black",
+            "White",
+            "CapturedFree",
+            "CapturedBlack",
+            "CapturedWhite",
+            "Free"]
+        
+        return spriteNames[rawValue - 1]
+    }
+    
+    var highlightedSpriteName: String{
+        return spriteName + "-Highlighted"
+    }
+    
+    var description: String{
+        return spriteName
+    }
+}
+
+
+// UI dependent Code
+class BoardPiece : Printable{
+    let x: Int
+    let y: Int
+    let pieceType: PieceType
+    var sprite:SKSpriteNode?
+    
+    var description: String{
+        return "type:\(pieceType) square:(\(x),\(y))"
+    }
+    
+    init(x: Int,y: Int,pieceType:PieceType){
+        self.x = x
+        self.y = y
+        self.pieceType = pieceType
+    }
+    
 }

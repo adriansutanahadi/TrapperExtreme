@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FDC1F4B31B3277FE001AE5EA /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC1F4B21B3277FE001AE5EA /* Board.swift */; };
 		FDC1F4B51B327C8B001AE5EA /* BoardPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */; };
+		FDCEE7EA1B3431D0003D2B22 /* BoardGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCEE7E91B3431D0003D2B22 /* BoardGameScene.swift */; };
 		FDD2B53C1B3191B1003F6660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */; };
 		FDD2B53E1B3191B1003F6660 /* BoardGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD2B53D1B3191B1003F6660 /* BoardGameViewController.swift */; };
 		FDD2B5411B3191B1003F6660 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD2B53F1B3191B1003F6660 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		FDC1F4B21B3277FE001AE5EA /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPiece.swift; sourceTree = "<group>"; };
+		FDCEE7E91B3431D0003D2B22 /* BoardGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardGameScene.swift; sourceTree = "<group>"; };
 		FDD2B5361B3191B1003F6660 /* Trapper Extreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trapper Extreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDD2B53A1B3191B1003F6660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */,
 				FDD2B53D1B3191B1003F6660 /* BoardGameViewController.swift */,
+				FDCEE7E91B3431D0003D2B22 /* BoardGameScene.swift */,
 				FDC1F4B21B3277FE001AE5EA /* Board.swift */,
 				FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */,
 				FDD2B53F1B3191B1003F6660 /* Main.storyboard */,
@@ -222,6 +225,7 @@
 				FDC1F4B51B327C8B001AE5EA /* BoardPiece.swift in Sources */,
 				FDD2B53C1B3191B1003F6660 /* AppDelegate.swift in Sources */,
 				FDC1F4B31B3277FE001AE5EA /* Board.swift in Sources */,
+				FDCEE7EA1B3431D0003D2B22 /* BoardGameScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
