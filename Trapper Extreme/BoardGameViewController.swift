@@ -11,7 +11,7 @@ import UIKit
 import SpriteKit
 
 class BoardGameViewController: UIViewController {
-    var board = Board<PieceType>(boardDimension: 3)
+    var board = Board<PieceType>(boardDimension: 3,initialValue: nil)
     var scene:BoardGameScene!
     
  

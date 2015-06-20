@@ -14,9 +14,9 @@ class Board<T>{
     
     let boardDimension: Int
     
-    init(boardDimension:Int){
+    init(boardDimension:Int,initialValue:T?){
         self.boardDimension =  boardDimension
-        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: nil  ))
+        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: initialValue  ))
     }
     
     // Index starts from 0,0 . x axis left to right,y axis up to down.
