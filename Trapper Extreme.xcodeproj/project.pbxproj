@@ -62,6 +62,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FDC41BCF1B36940000CADCA7 /* GameLogic */ = {
+			isa = PBXGroup;
+			children = (
+				FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */,
+				FDC1F4B21B3277FE001AE5EA /* Board.swift */,
+			);
+			name = GameLogic;
+			sourceTree = "<group>";
+		};
+		FDC41BD01B36942100CADCA7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FDD2B53D1B3191B1003F6660 /* BoardGameViewController.swift */,
+				FDCEE7E91B3431D0003D2B22 /* BoardGameScene.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		FDD2B52D1B3191B1003F6660 = {
 			isa = PBXGroup;
 			children = (
@@ -83,11 +101,9 @@
 		FDD2B5381B3191B1003F6660 /* Trapper Extreme */ = {
 			isa = PBXGroup;
 			children = (
+				FDC41BD01B36942100CADCA7 /* UI */,
 				FDD2B53B1B3191B1003F6660 /* AppDelegate.swift */,
-				FDD2B53D1B3191B1003F6660 /* BoardGameViewController.swift */,
-				FDCEE7E91B3431D0003D2B22 /* BoardGameScene.swift */,
-				FDC1F4B21B3277FE001AE5EA /* Board.swift */,
-				FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */,
+				FDC41BCF1B36940000CADCA7 /* GameLogic */,
 				FDD2B53F1B3191B1003F6660 /* Main.storyboard */,
 				FDD2B5421B3191B1003F6660 /* Images.xcassets */,
 				FDD2B5441B3191B1003F6660 /* LaunchScreen.xib */,

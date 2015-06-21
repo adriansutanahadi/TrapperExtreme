@@ -34,21 +34,21 @@ enum PieceType: Int,Printable {
 }
 
 
-// UI dependent Code
-class BoardPiece : Printable{
-    let x: Int
-    let y: Int
-    let pieceType: PieceType
-    var sprite:SKSpriteNode?
-    
-    var description: String{
-        return "type:\(pieceType) square:(\(x),\(y))"
-    }
-    
-    init(x: Int,y: Int,pieceType:PieceType){
-        self.x = x
-        self.y = y
-        self.pieceType = pieceType
-    }
-    
-}
+//// UI dependent Code
+//class BoardPiece : Printable{
+//    let x: Int
+//    let y: Int
+//    let pieceType: PieceType
+//    var sprite:SKSpriteNode?
+//    
+//    var description: String{
+//        return "type:\(pieceType) square:(\(x),\(y))"
+//    }
+//    
+//    init(x: Int,y: Int,pieceType:PieceType){
+//        self.x = x
+//        self.y = y
+//        self.pieceType = pieceType
+//    }
+//
+//}

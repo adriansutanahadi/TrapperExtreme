@@ -11,7 +11,7 @@ import UIKit
 import SpriteKit
 
 class BoardGameViewController: UIViewController {
-    var board = Board<PieceType>(boardDimension: 3,initialValue: nil)
+    var board:Board<PieceType>!
     var scene:BoardGameScene!
     
  
@@ -36,20 +36,23 @@ class BoardGameViewController: UIViewController {
         
         // Create and configure the scene
         self.scene = BoardGameScene(size: skView.bounds.size)
+        self.scene.board = self.board
         self.scene.scaleMode = .AspectFill
-        
+       
         // Presentthe scene
         skView.presentScene(self.scene)
     }
     
     func setUpBoard(){
+        self.board = Board<PieceType>(boardDimension: 3,initialValue: PieceType.EmptyCell)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpScene()
         setUpBoard()
+        setUpScene()
+       
         // Do any additional setup after loading the view, typically from a nib.
     }
 
