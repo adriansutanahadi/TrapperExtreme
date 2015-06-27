@@ -11,7 +11,7 @@ import UIKit
 import SpriteKit
 
 class BoardGameViewController: UIViewController {
-    var board = Board<PieceType>(boardDimension: 3,initialValue: nil)
+    var board = Board(boardDimension: 3,initialValue: PieceType.EmptyCell)
     var scene:BoardGameScene!
     
  
@@ -31,7 +31,7 @@ class BoardGameViewController: UIViewController {
     
     func setUpScene(){
         // Configure the view
-        let skView = view! as SKView
+        let skView = view! as! SKView
         skView.multipleTouchEnabled = false
         
         // Create and configure the scene
