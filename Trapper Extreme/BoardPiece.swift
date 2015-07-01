@@ -9,7 +9,7 @@
 import SpriteKit
 
 enum PieceType: Int,Printable {
-    case Black = 0,White,CapturedEmptyCell,CapturedBlack,CapturedWhite,EmptyCell
+    case Black,White,CapturedEmptyCell,CapturedBlack,CapturedWhite,EmptyCell
     
     
     var spriteName: String {
@@ -21,7 +21,7 @@ enum PieceType: Int,Printable {
             "CapturedWhite",
             "EmptyCell"]
         
-        return spriteNames[rawValue - 1]
+        return spriteNames[rawValue]
     }
     
     var highlightedSpriteName: String{
