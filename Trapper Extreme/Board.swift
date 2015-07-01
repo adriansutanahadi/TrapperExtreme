@@ -8,23 +8,30 @@
 
 import Foundation
 
-class Board<T>{
+class Board{
     //Private setter
-    private(set) var board: [[T?]]!
+    private(set) var board: [[BoardPiece?]]!
     
     let boardDimension: Int
     
-    init(boardDimension:Int,initialValue:T?){
+    init(boardDimension:Int,initialValue:PieceType!){
         self.boardDimension =  boardDimension
-        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: initialValue  ))
+
+        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: nil))
+        for x in 0...boardDimension-1 {
+            for y in 0...boardDimension-1 {
+                let initialPiece = BoardPiece(pieceType: initialValue)
+                self.board[x][y] = initialPiece
+            }
+        }
     }
     
     // Index starts from 0,0 . x axis left to right,y axis up to down.
     // Need to add more constraint, such as piece must beeiter Black or White ???
     // If legal return true,else false
-    func addPiece(piece:T!,x:Int, y:Int) -> Bool{
+    func addPiece(piece:PieceType,x:Int, y:Int) -> Bool{
         if let isFree = self.board[x][y]{
-            self.board[x][y] = piece
+            self.board[x][y]?.pieceType = piece
             return true
         } else {
             return false
