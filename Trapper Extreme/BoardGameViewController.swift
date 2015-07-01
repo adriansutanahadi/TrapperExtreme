@@ -10,7 +10,7 @@
 import UIKit
 import SpriteKit
 
-class BoardGameViewController: UIViewController {
+class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     var board:Board<PieceType>!
     var scene:BoardGameScene!
     
@@ -31,22 +31,37 @@ class BoardGameViewController: UIViewController {
     
     func setUpScene(){
         // Configure the view
-        let skView = view! as SKView
+        let skView = view! as! SKView
         skView.multipleTouchEnabled = false
         
         // Create and configure the scene
         self.scene = BoardGameScene(size: skView.bounds.size)
-        self.scene.board = self.board
+        self.scene.dataSource = self
+        
+        //self.scene.board = self.board
         self.scene.scaleMode = .AspectFill
        
         // Presentthe scene
         skView.presentScene(self.scene)
     }
     
+    func boardSizeForScene(sender: BoardGameScene) -> Int! {
+        return self.board.boardDimension
+    }
+    func spriteForScene(sender: BoardGameScene,x:Int!,y:Int!) -> String! {
+        return self.board.board[x][y]?.spriteName
+    }
+    
+    func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
+        return false
+        //TODO
+    }
+    
     func setUpBoard(){
         self.board = Board<PieceType>(boardDimension: 3,initialValue: PieceType.EmptyCell)
         
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +75,7 @@ class BoardGameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
 
 
 }

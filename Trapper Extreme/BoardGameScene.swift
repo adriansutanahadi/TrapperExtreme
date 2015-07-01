@@ -9,43 +9,109 @@
 
 import SpriteKit
 
+protocol boardGameSceneDataSource: class{
+    func boardSizeForScene(sender: BoardGameScene) -> Int!
+    func spriteForScene(sender: BoardGameScene,x:Int!,y:Int!) -> String!
+    //Tell me if the touch made any change or not, since if it there is no change no need to update view
+    func pieceTouched(sender: BoardGameScene,x:Int!,y:Int!) -> Bool
+}
+
+
 class BoardGameScene: SKScene {
-    var board:Board<PieceType>!
+    //should only get dimension
+    var boardPieces:[SKSpriteNode]! = []
+
     
     let TileWidth: CGFloat = 32.0
     let TileHeight: CGFloat = 36.0
+    
+   
+    
     
     let boardGameLayer = SKNode()
     let boardPieceLayer = SKNode()
     let tilesLayer = SKNode()
     
+    //Delegations
+    weak var dataSource:boardGameSceneDataSource!
     
-    override func didMoveToView(view: SKView) {
-        setBackground()
-        setLayer()
-        addTiles()
-        //addPiece()
+    
+
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        // 1
+        let touch = touches.first as! UITouch
+        let location = touch.locationInNode(boardPieceLayer)
+        // 2
+        let (success, x, y) = convertPoint(location)
+        if success {
+            if let valid = dataSource.pieceTouched(self,x: x,y: y){
+                updateboardPiece()
+            }
+            // 3
+            //Controller work
+            //board.addPiece(PieceType.White,x:x,y:y)
+
+        }
+
     }
     
-    private func addPiece(){
-        for x in 0..<board.boardDimension{
-            for y in 0..<board.boardDimension{
-                let sprite = SKSpriteNode(imageNamed: board.board[x][y]!.spriteName)
-                sprite.position = positionForView(x,y: y)
-                boardPieceLayer.addChild(sprite)
+    func updateboardPiece(){
+        for sprite in boardPieces{
+            let (sucess,x,y) = convertPoint(sprite.position)
+            assert(sucess)
+            if sucess {
+                sprite.texture = SKTexture(imageNamed: dataSource.spriteForScene(self, x: x, y: y))
             }
         }
     }
     
-    private func addTiles(){
-        for x in 0..<board.boardDimension{
-            for y in 0..<board.boardDimension{
+    func convertPoint(point: CGPoint) -> (success: Bool, x: Int, y: Int) {
+        let boardDimension = dataSource.boardSizeForScene(self)
+        if point.x >= 0 && point.x < CGFloat(boardDimension)*TileWidth &&
+            point.y >= 0 && point.y < CGFloat(boardDimension)*TileHeight {
+                return (true, Int(point.x / TileWidth), Int(point.y / TileHeight))
+        } else {
+            return (false, 0, 0)  // invalid location
+        }
+    }
+    
+    override func didMoveToView(view: SKView) {
+        setBackground()
+        setLayer()
+        displayTiles()
+        displayPiece()
+    }
+    
+    //display initial piece
+    private func displayPiece(){
+        let boardDimension = dataSource.boardSizeForScene(self)
+        for x in 0..<boardDimension{
+            for y in 0..<boardDimension{
+        
+                var sprite = SKSpriteNode(imageNamed: dataSource.spriteForScene(self, x: x, y: y))
+                
+                //print(board.board[x][y]!.spriteName)
+                sprite.position = positionForView(x,y: y)
+                boardPieceLayer.addChild(sprite)
+                boardPieces.append(sprite)
+            }
+        }
+    }
+    
+    private func displayTiles(){
+        let boardDimension = dataSource.boardSizeForScene(self)
+        for x in 0..<boardDimension{
+            for y in 0..<boardDimension{
                 let tile = SKSpriteNode(imageNamed: "Tile")
                 tile.position = positionForView(x,y: y)
                 tilesLayer.addChild(tile)
             }
         }
     }
+    
+    
+    
     
 
 
@@ -60,10 +126,11 @@ class BoardGameScene: SKScene {
     // Change 10 to number of rows
     // should boardPieceLayer added to tiles layer
     private func setLayer(){
+        let boardDimension = dataSource.boardSizeForScene(self)
         addChild(boardGameLayer)
         let layerPosition = CGPoint(
-            x: -TileWidth * CGFloat(board.boardDimension) / 2,
-            y: -TileHeight * CGFloat(board.boardDimension) / 2)
+            x: -TileWidth * CGFloat(boardDimension) / 2,
+            y: -TileHeight * CGFloat(boardDimension) / 2)
         tilesLayer.position = layerPosition
         boardGameLayer.addChild(tilesLayer)
         
