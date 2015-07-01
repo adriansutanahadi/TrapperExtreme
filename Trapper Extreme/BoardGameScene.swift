@@ -45,9 +45,11 @@ class BoardGameScene: SKScene {
         // 2
         let (success, x, y) = convertPoint(location)
         if success {
-            if let valid = dataSource.pieceTouched(self,x: x,y: y){
+            let valid = dataSource.pieceTouched(self,x: x,y: y)
+            if valid {
                 updateboardPiece()
             }
+            
             // 3
             //Controller work
             //board.addPiece(PieceType.White,x:x,y:y)
