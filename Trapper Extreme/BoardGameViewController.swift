@@ -53,7 +53,8 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     }
     
     func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
-        return false
+        return board.addPiece(PieceType.Black, x: x, y: y)
+        
         //TODO
     }
     
