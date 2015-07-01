@@ -11,7 +11,7 @@ import UIKit
 import SpriteKit
 
 class BoardGameViewController: UIViewController,boardGameSceneDataSource {
-    var board:Board<PieceType>!
+    var board:Board!
     var scene:BoardGameScene!
     
  
@@ -49,7 +49,7 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         return self.board.boardDimension
     }
     func spriteForScene(sender: BoardGameScene,x:Int!,y:Int!) -> String! {
-        return self.board.board[x][y]?.spriteName
+        return self.board.board[x][y].spriteName
     }
     
     func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
@@ -59,7 +59,7 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     }
     
     func setUpBoard(){
-        self.board = Board<PieceType>(boardDimension: 3,initialValue: PieceType.EmptyCell)
+        self.board = Board(boardDimension: 3,initialValue: PieceType.EmptyCell)
         
     }
     
