@@ -47,6 +47,7 @@ class BoardGameScene: SKScene {
         let (success, x, y) = convertPoint(location)
         if success {
             let valid = dataSource.pieceTouched(self,x: x,y: y)
+            print("\(x),\(y)\n")
 //            if valid {
 //                updateboardPiece()
 //            }
@@ -69,15 +70,7 @@ class BoardGameScene: SKScene {
 //        }
 //    }
     
-    func convertPoint(point: CGPoint) -> (success: Bool, x: Int, y: Int) {
-        let boardDimension = dataSource.boardSizeForScene(self)
-        if point.x >= 0 && point.x < CGFloat(boardDimension)*TileWidth &&
-            point.y >= 0 && point.y < CGFloat(boardDimension)*TileHeight {
-                return (true, Int(point.x / TileWidth), Int(point.y / TileHeight))
-        } else {
-            return (false, 0, 0)  // invalid location
-        }
-    }
+
     
     override func didMoveToView(view: SKView) {
         setBackground()
@@ -96,7 +89,7 @@ class BoardGameScene: SKScene {
                 //print(board.board[x][y]!.spriteName)
                 board[x][y]!.sprite!.position = positionForView(x,y: y)
                 boardPieceLayer.addChild(board[x][y]!.sprite!)
-//                boardPieces.append(sprite)
+//              boardPieces.append(sprite)
             }
         }
     }
@@ -144,9 +137,20 @@ class BoardGameScene: SKScene {
     
     //Helper function covert grid position to view coordinate
     private func positionForView(x: Int, y: Int) -> CGPoint {
+        let boardDimension = dataSource.boardSizeForScene(self)
         return CGPoint(
             x: CGFloat(x)*TileWidth + TileWidth/2,
-            y: CGFloat(y)*TileHeight + TileHeight/2)
+            y: CGFloat(boardDimension-1-y)*TileHeight + TileHeight/2)
+    }
+    
+    func convertPoint(point: CGPoint) -> (success: Bool, x: Int, y: Int) {
+        let boardDimension = dataSource.boardSizeForScene(self)
+        if point.x >= 0 && point.x < CGFloat(boardDimension)*TileWidth &&
+            point.y >= 0 && point.y < CGFloat(boardDimension)*TileHeight {
+                return (true, Int(point.x / TileWidth), boardDimension-1 - Int(point.y / TileHeight) )
+        } else {
+            return (false, 0, 0)  // invalid location
+        }
     }
 
 }

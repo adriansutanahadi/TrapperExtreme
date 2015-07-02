@@ -14,7 +14,7 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     var board:Board!
     var scene:BoardGameScene!
     
-    let gameSize = 3
+    let gameSize = 6
  
     
     
