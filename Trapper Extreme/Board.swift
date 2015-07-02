@@ -86,7 +86,7 @@ class Board{
     }
     
     func checkCellValidity(p: Point) -> Bool{
-        if p.x < 0 || p.x > self.boardDimension || p.y < 0 || p.y > self.boardDimension {
+        if p.x < 0 || p.x >= self.boardDimension || p.y < 0 || p.y >= self.boardDimension {
             return false
         } else {
             return true
@@ -141,8 +141,7 @@ class Board{
 
     func floodFill(p: Point, player: PieceType) -> [Point] {
         var processedPoints: [Point] = []
-        let isBlocked = self.board[p.x][p.y] == player
-        if (isBlocked || checkCellValidity(p)) {
+        if !checkCellValidity(p) || self.board[p.x][p.y] == player {
             return []
         }
         

@@ -59,7 +59,7 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     }
     
     func setUpBoard(){
-        self.board = Board(boardDimension: 3,initialValue: PieceType.EmptyCell)
+        self.board = Board(boardDimension: 5,initialValue: PieceType.EmptyCell)
         
     }
     
