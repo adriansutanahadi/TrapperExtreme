@@ -35,20 +35,26 @@ enum PieceType: Int,Printable {
 
 
 //// UI dependent Code
-//class BoardPiece : Printable{
-//    let x: Int
-//    let y: Int
-//    let pieceType: PieceType
-//    var sprite:SKSpriteNode?
-//    
-//    var description: String{
-//        return "type:\(pieceType) square:(\(x),\(y))"
+class BoardPiece {
+
+    var pieceType: PieceType {
+        willSet {
+            self.sprite?.texture =  SKTexture(imageNamed: newValue.spriteName)
+
+            //setSprite(oldValue)
+        }
+    }
+    var sprite:SKSpriteNode?
+
+    
+    init(pieceType: PieceType){
+        self.pieceType = pieceType
+        self.sprite =  SKSpriteNode(imageNamed: pieceType.spriteName)
+
+    }
+    
+//    private func setSprite(p:PieceType) {
+//        self.sprite =  SKSpriteNode(imageNamed: p.spriteName)
 //    }
-//    
-//    init(x: Int,y: Int,pieceType:PieceType){
-//        self.x = x
-//        self.y = y
-//        self.pieceType = pieceType
-//    }
-//
-//}
+
+}

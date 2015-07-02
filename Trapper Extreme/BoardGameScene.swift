@@ -11,15 +11,15 @@ import SpriteKit
 
 protocol boardGameSceneDataSource: class{
     func boardSizeForScene(sender: BoardGameScene) -> Int!
-    func spriteForScene(sender: BoardGameScene,x:Int!,y:Int!) -> String!
-    //Tell me if the touch made any change or not, since if it there is no change no need to update view
+        //Tell me if the touch made any change or not, since if it there is no change no need to update view
+    func boardForScene(sender: BoardGameScene) -> [[BoardPiece?]]!
     func pieceTouched(sender: BoardGameScene,x:Int!,y:Int!) -> Bool
 }
 
 
 class BoardGameScene: SKScene {
     //should only get dimension
-    var boardPieces:[SKSpriteNode]! = []
+    //var boardPieces:[SKSpriteNode]! = []
 
     
     let TileWidth: CGFloat = 32.0
@@ -31,6 +31,7 @@ class BoardGameScene: SKScene {
     let boardGameLayer = SKNode()
     let boardPieceLayer = SKNode()
     let tilesLayer = SKNode()
+    
     
     //Delegations
     weak var dataSource:boardGameSceneDataSource!
@@ -46,9 +47,9 @@ class BoardGameScene: SKScene {
         let (success, x, y) = convertPoint(location)
         if success {
             let valid = dataSource.pieceTouched(self,x: x,y: y)
-            if valid {
-                updateboardPiece()
-            }
+//            if valid {
+//                updateboardPiece()
+//            }
             
             // 3
             //Controller work
@@ -58,15 +59,15 @@ class BoardGameScene: SKScene {
 
     }
     
-    func updateboardPiece(){
-        for sprite in boardPieces{
-            let (sucess,x,y) = convertPoint(sprite.position)
-            assert(sucess)
-            if sucess {
-                sprite.texture = SKTexture(imageNamed: dataSource.spriteForScene(self, x: x, y: y))
-            }
-        }
-    }
+//    func updateboardPiece(){
+//        for sprite in boardPieces{
+//            let (sucess,x,y) = convertPoint(sprite.position)
+//            assert(sucess)
+//            if sucess {
+//                sprite.texture = SKTexture(imageNamed: dataSource.spriteForScene(self, x: x, y: y))
+//            }
+//        }
+//    }
     
     func convertPoint(point: CGPoint) -> (success: Bool, x: Int, y: Int) {
         let boardDimension = dataSource.boardSizeForScene(self)
@@ -88,15 +89,14 @@ class BoardGameScene: SKScene {
     //display initial piece
     private func displayPiece(){
         let boardDimension = dataSource.boardSizeForScene(self)
+        let board = dataSource.boardForScene(self)
         for x in 0..<boardDimension{
             for y in 0..<boardDimension{
-        
-                var sprite = SKSpriteNode(imageNamed: dataSource.spriteForScene(self, x: x, y: y))
-                
+            
                 //print(board.board[x][y]!.spriteName)
-                sprite.position = positionForView(x,y: y)
-                boardPieceLayer.addChild(sprite)
-                boardPieces.append(sprite)
+                board[x][y]!.sprite!.position = positionForView(x,y: y)
+                boardPieceLayer.addChild(board[x][y]!.sprite!)
+//                boardPieces.append(sprite)
             }
         }
     }

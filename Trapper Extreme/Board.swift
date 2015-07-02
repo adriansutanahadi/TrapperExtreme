@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // Structs
 
 struct Point {
@@ -35,35 +34,39 @@ struct Stack<T> {
         return items.isEmpty
     }
 }
-
-
+        
 class Board{
-    
     //Private setter
-    private(set) var board: [[PieceType]]
+    private(set) var board: [[BoardPiece?]]!
     private(set) var whiteScore: Int
     private(set) var blackScore: Int
     private(set) var emptyCellCount: Int
     private(set) var capturedCellsMap: [(point: Point, owner: PieceType)]
     
     let boardDimension: Int
+    
+    init(boardDimension:Int,initialValue:PieceType!){
+        self.boardDimension =  boardDimension
 
-    init(boardDimension:Int,initialValue:PieceType){
-        self.boardDimension = boardDimension
-        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: initialValue  ))
+        self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: nil))
+        for x in 0...boardDimension-1 {
+            for y in 0...boardDimension-1 {
+                let initialPiece = BoardPiece(pieceType: initialValue)
+                self.board[x][y] = initialPiece
+            }
+        }
         self.whiteScore = 0
         self.blackScore = 0
         self.emptyCellCount = boardDimension * boardDimension
         self.capturedCellsMap = []
-        
     }
     
     // Index starts from 0,0 . x axis left to right,y axis up to down.
     // Need to add more constraint, such as piece must beeiter Black or White ???
     // If legal return true,else false
     func addPiece(piece:PieceType!,x:Int, y:Int) -> Bool{
-        if self.board[x][y] == PieceType.EmptyCell{
-            self.board[x][y] = piece
+        if self.board[x][y]!.pieceType == PieceType.EmptyCell {
+            self.board[x][y]!.pieceType = piece
             self.emptyCellCount -= 1
             updateBoard(Point(x: x, y: y), player: piece)
             updateScore()
@@ -77,13 +80,13 @@ class Board{
         return self.emptyCellCount == 0
     }
     
-    func isCaptured(c: PieceType) -> Bool {
-        if c == PieceType.CapturedBlack || c == PieceType.CapturedEmptyCell || c == PieceType.CapturedWhite {
-            return true
-        } else {
-            return false
-        }
-    }
+//    func isCaptured(c: PieceType) -> Bool {
+//        if c == PieceType.CapturedBlack || c == PieceType.CapturedEmptyCell || c == PieceType.CapturedWhite {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     
     func checkCellValidity(p: Point) -> Bool{
         if p.x < 0 || p.x >= self.boardDimension || p.y < 0 || p.y >= self.boardDimension {
@@ -97,25 +100,25 @@ class Board{
         let topTile = Point(x: p.x, y: p.y-1)
         let leftTile = Point(x: p.x-1, y: p.y)
         let bottomTile = Point(x: p.x, y: p.y+1)
-        let rightTile = Point(x: p.x+1, y: p.y+1)
+        let rightTile = Point(x: p.x+1, y: p.y)
         let capturedTop = floodFill(topTile, player: player)
         let capturedLeft = floodFill(leftTile, player: player)
         let capturedBottom = floodFill(bottomTile, player: player)
         let capturedRight = floodFill(rightTile, player: player)
         let capturedTiles = capturedTop + capturedLeft + capturedBottom + capturedRight
         for tile in capturedTiles {
-            let piece = board[tile.x][tile.y]
+            let piece = board[tile.x][tile.y]!.pieceType
             if player == PieceType.White {
                 switch piece {
                 case PieceType.EmptyCell:
-                    board[tile.x][tile.y] = PieceType.CapturedEmptyCell
+                    board[tile.x][tile.y]!.pieceType = PieceType.CapturedEmptyCell
                     capturedCellsMap.append((point: tile, owner: player))
                     self.emptyCellCount -= 1
                 case PieceType.Black:
-                    board[tile.x][tile.y] = PieceType.CapturedBlack
+                    board[tile.x][tile.y]!.pieceType = PieceType.CapturedBlack
                     capturedCellsMap.append((point: tile, owner: player))
                 case PieceType.CapturedWhite:
-                    board[tile.x][tile.y] = PieceType.White
+                    board[tile.x][tile.y]!.pieceType = PieceType.White
                     capturedCellsMap = capturedCellsMap.filter({!$0.point.isEqual(tile)})
                 default:
                     break   
@@ -123,14 +126,14 @@ class Board{
             } else if player == PieceType.Black {
                 switch piece {
                 case PieceType.EmptyCell:
-                    board[p.x][p.y] = PieceType.CapturedEmptyCell
+                    board[tile.x][tile.y]!.pieceType = PieceType.CapturedEmptyCell
                     capturedCellsMap.append((point: tile, owner: player))
                     self.emptyCellCount -= 1
                 case PieceType.White:
-                    board[p.x][p.y] = PieceType.CapturedWhite
+                    board[tile.x][tile.y]!.pieceType = PieceType.CapturedWhite
                     capturedCellsMap.append((point: tile, owner: player))
                 case PieceType.CapturedBlack:
-                    board[p.x][p.y] = PieceType.Black
+                    board[tile.x][tile.y]!.pieceType = PieceType.Black
                     capturedCellsMap = capturedCellsMap.filter({!$0.point.isEqual(tile)})
                 default:
                     break
@@ -141,7 +144,7 @@ class Board{
 
     func floodFill(p: Point, player: PieceType) -> [Point] {
         var processedPoints: [Point] = []
-        if !checkCellValidity(p) || self.board[p.x][p.y] == player {
+        if !checkCellValidity(p) || self.board[p.x][p.y]!.pieceType == player {
             return []
         }
         
@@ -156,7 +159,7 @@ class Board{
         queue.push(p)
         while(!queue.isEmpty()) {
             let currentPosition = queue.pop()
-            if board[currentPosition.x][currentPosition.y] != player {
+            if board[currentPosition.x][currentPosition.y]!.pieceType != player {
                 processedPoints += [currentPosition]
                 for dir in directions {
                     let nextPosition = Point(x: currentPosition.x + dir.x, y: currentPosition.y + dir.y)
@@ -164,7 +167,7 @@ class Board{
                     if !isValid {
                         return []
                     }
-                    let notProcessedPreviously = processedPoints.filter({$0.isEqual(nextPosition)}).count < 0
+                    let notProcessedPreviously = processedPoints.filter({$0.isEqual(nextPosition)}).count == 0
                     if isValid && notProcessedPreviously {
                         queue.push(nextPosition)
                     }
