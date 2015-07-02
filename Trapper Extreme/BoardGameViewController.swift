@@ -49,7 +49,6 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     func boardSizeForScene(sender: BoardGameScene) -> Int! {
         return self.board.boardDimension
     }
-
     
     func boardForScene(sender: BoardGameScene) -> [[BoardPiece?]]! {
         return self.board.board!
