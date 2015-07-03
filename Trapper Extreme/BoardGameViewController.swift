@@ -10,13 +10,21 @@
 import UIKit
 import SpriteKit
 
+protocol HumanInputDelegate{
+    func humanInput(sender:BoardGameViewController,x:Int,y:Int)
+}
+
 class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     var board:Board!
     var scene:BoardGameScene!
-    
+
     let gameSize = 6
  
     
+    //TemporaryGameCode
+    var p1:HumanPlayer!
+    var p2:HumanPlayer!
+    var currentSide:Bool!
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -55,9 +63,18 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     }
     
     func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
-        
-        let validMove = board.addPiece(PieceType.Black, x: x, y: y)
-        
+        let move:Move!
+        if currentSide!{
+           p1.humanInput(self, x: x, y: y)
+            move = p1.playMove()
+        } else {
+            p2.humanInput(self,x: x,y:y)
+            move = p2.playMove()
+        }
+        let validMove = board.addPiece(move.player, x: move.x, y: move.y)
+        if (validMove){
+            currentSide = !currentSide
+        }
         //TODO
         return validMove
     }
@@ -67,12 +84,17 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         
     }
     
+    func setUpGame(){
+        self.p1 = HumanPlayer(player: PieceType.Black)
+        self.p2 = HumanPlayer(player: PieceType.White)
+        currentSide = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBoard()
         setUpScene()
-       
+        setUpGame()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
