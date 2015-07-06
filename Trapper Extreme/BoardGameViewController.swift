@@ -15,16 +15,14 @@ protocol HumanInputDelegate{
 }
 
 class BoardGameViewController: UIViewController,boardGameSceneDataSource {
-    var board:Board!
     var scene:BoardGameScene!
-
-    let gameSize = 6
- 
     
-    //TemporaryGameCode
-    var p1:HumanPlayer!
-    var p2:HumanPlayer!
-    var currentSide:Bool!
+    let gameSize = 6
+    
+    // game variables
+    var p1: Player!
+    var p2: Player!
+    var game: BoardGame!
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -49,61 +47,39 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         
         //self.scene.board = self.board
         self.scene.scaleMode = .AspectFill
-       
+        
         // Presentthe scene
         skView.presentScene(self.scene)
     }
     
     func boardSizeForScene(sender: BoardGameScene) -> Int! {
-        return self.board.boardDimension
+        return self.game.board.boardDimension
     }
     
     func boardForScene(sender: BoardGameScene) -> [[BoardPiece?]]! {
-        return self.board.board!
+        return self.game.board.board!
     }
     
     func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
-        let move:Move!
-        if currentSide!{
-           p1.humanInput(self, x: x, y: y)
-            move = p1.playMove()
-        } else {
-            p2.humanInput(self,x: x,y:y)
-            move = p2.playMove()
-        }
-        let validMove = board.addPiece(move.player, x: move.x, y: move.y)
-        if (validMove){
-            currentSide = !currentSide
-        }
-        //TODO
-        return validMove
-    }
-    
-    func setUpBoard(){
-        self.board = Board(boardDimension: gameSize,initialValue: PieceType.EmptyCell)
-        
+        return self.game.acceptMove(self, x: x, y: y)
     }
     
     func setUpGame(){
-        self.p1 = HumanPlayer(player: PieceType.Black)
-        self.p2 = HumanPlayer(player: PieceType.White)
-        currentSide = true
+        self.p1 = HumanPlayer(player: PieceType.White)
+        self.p2 = HumanPlayer(player: PieceType.Black)
+        self.game = TrapperExtremeGame(p1: self.p1, p2: self.p2, boardSize: self.gameSize)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpBoard()
-        setUpScene()
         setUpGame()
+        setUpScene()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-
+    
 }
-

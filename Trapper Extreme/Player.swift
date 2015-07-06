@@ -23,7 +23,7 @@ struct Move {
 }
 
 protocol Player {
-    var playerSide:PieceType! {get }
+    var playerSide:PieceType! { get }
     func playMove()->Move?
     static func isLegalPieceType(p:PieceType) -> Bool
 }
