@@ -66,7 +66,7 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     
     func setUpGame(){
         self.p1 = HumanPlayer(player: PieceType.White)
-        self.p2 = HumanPlayer(player: PieceType.Black)
+        self.p2 = AIPlayer(player: PieceType.Black)
         self.game = TrapperExtremeGame(p1: self.p1, p2: self.p2, boardSize: self.gameSize)
     }
     

@@ -47,7 +47,7 @@ class Board{
     let boardDimension: Int
     
     init(boardDimension:Int,initialValue:PieceType!){
-        self.boardDimension =  boardDimension
+        self.boardDimension = boardDimension
 
         self.board = Array(count:boardDimension, repeatedValue:Array(count:boardDimension, repeatedValue: nil))
         for x in 0...boardDimension-1 {
@@ -60,6 +60,22 @@ class Board{
         self.blackScore = 0
         self.emptyCellCount = boardDimension * boardDimension
         self.capturedCellsMap = []
+    }
+    
+    init(b: Board) {
+        self.boardDimension = b.boardDimension
+        
+        self.board = Array(count:self.boardDimension, repeatedValue:Array(count:self.boardDimension, repeatedValue: nil))
+        for x in 0...self.boardDimension-1 {
+            for y in 0...self.boardDimension-1 {
+                let initialPiece = BoardPiece(pieceType: b.board[x][y]!.pieceType)
+                self.board[x][y] = initialPiece
+            }
+        }
+        self.whiteScore = b.whiteScore
+        self.blackScore = b.blackScore
+        self.emptyCellCount = b.emptyCellCount
+        self.capturedCellsMap = b.capturedCellsMap
     }
     
     // Index starts from 0,0 . x axis left to right,y axis up to down.
@@ -89,7 +105,7 @@ class Board{
 //        }
 //    }
     
-    func checkCellValidity(p: Point) -> Bool{
+    private func checkCellValidity(p: Point) -> Bool{
         if p.x < 0 || p.x >= self.boardDimension || p.y < 0 || p.y >= self.boardDimension {
             return false
         } else {
@@ -97,7 +113,7 @@ class Board{
         }
     }
     
-    func updateBoard(p: Point, player: PieceType) {
+    private func updateBoard(p: Point, player: PieceType) {
         let topTile = Point(x: p.x, y: p.y-1)
         let leftTile = Point(x: p.x-1, y: p.y)
         let bottomTile = Point(x: p.x, y: p.y+1)
@@ -143,7 +159,7 @@ class Board{
         }
     }
 
-    func floodFill(p: Point, player: PieceType) -> [Point] {
+    private func floodFill(p: Point, player: PieceType) -> [Point] {
         var processedPoints: [Point] = []
         if !checkCellValidity(p) || self.board[p.x][p.y]!.pieceType == player {
             return []
@@ -179,7 +195,7 @@ class Board{
     }
     
     // update the score
-    func updateScore() {
+    private func updateScore() {
         var blackScore = 0
         var whiteScore = 0
         

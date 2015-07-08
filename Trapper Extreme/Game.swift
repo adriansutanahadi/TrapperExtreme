@@ -34,12 +34,12 @@ class TrapperExtremeGame: BoardGame {
             if let human = p1 as? HumanPlayer {
                 human.humanInput(sender, x: x, y: y)
             }
-            move = p1.playMove()
+            move = p1.playMove(self.board)
         } else {
             if let human = p2 as? HumanPlayer {
                 human.humanInput(sender, x: x, y: y)
             }
-            move = p2.playMove()
+            move = p2.playMove(self.board)
         }
         let validMove = board.addPiece(move.player, x: move.x, y: move.y)
         if validMove {
