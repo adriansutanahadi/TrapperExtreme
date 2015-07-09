@@ -66,6 +66,11 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         return (self.board.blackScore,self.board.whiteScore)
     }
     
+    func settingsButtonPressed(sender:BoardGameScene){
+        
+    }
+
+    
     func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
         let move:Move!
         if currentSide!{

@@ -15,6 +15,7 @@ protocol boardGameSceneDataSource: class{
     func boardForScene(sender: BoardGameScene) -> [[BoardPiece?]]!
     func pieceTouched(sender: BoardGameScene,x:Int!,y:Int!) -> Bool
     func scoreForScene(sender: BoardGameScene) -> (Int,Int)!
+    func settingsButtonPressed(sender:BoardGameScene)
     
 }
 
