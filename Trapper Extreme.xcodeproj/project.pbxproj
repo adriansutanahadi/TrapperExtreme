@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD5CA1F21B4B908E0097ED0A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5CA1F11B4B908E0097ED0A /* SettingsViewController.swift */; };
+		FD5CA1F41B4B9C260097ED0A /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5CA1F31B4B9C260097ED0A /* GameOverViewController.swift */; };
 		FDC1F4B31B3277FE001AE5EA /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC1F4B21B3277FE001AE5EA /* Board.swift */; };
 		FDC1F4B51B327C8B001AE5EA /* BoardPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */; };
 		FDCB66E81B4578AD001EFAF6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCB66E71B4578AD001EFAF6 /* Player.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD5CA1F11B4B908E0097ED0A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FD5CA1F31B4B9C260097ED0A /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		FDC1F4B21B3277FE001AE5EA /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FDC1F4B41B327C8B001AE5EA /* BoardPiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPiece.swift; sourceTree = "<group>"; };
 		FDCB66E71B4578AD001EFAF6 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 			children = (
 				FDD2B53D1B3191B1003F6660 /* BoardGameViewController.swift */,
 				FDCEE7E91B3431D0003D2B22 /* BoardGameScene.swift */,
+				FD5CA1F11B4B908E0097ED0A /* SettingsViewController.swift */,
+				FD5CA1F31B4B9C260097ED0A /* GameOverViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -243,7 +249,9 @@
 			files = (
 				FDD2B53E1B3191B1003F6660 /* BoardGameViewController.swift in Sources */,
 				FDC1F4B51B327C8B001AE5EA /* BoardPiece.swift in Sources */,
+				FD5CA1F21B4B908E0097ED0A /* SettingsViewController.swift in Sources */,
 				FDD2B53C1B3191B1003F6660 /* AppDelegate.swift in Sources */,
+				FD5CA1F41B4B9C260097ED0A /* GameOverViewController.swift in Sources */,
 				FDC1F4B31B3277FE001AE5EA /* Board.swift in Sources */,
 				FDCB66E81B4578AD001EFAF6 /* Player.swift in Sources */,
 				FDCEE7EA1B3431D0003D2B22 /* BoardGameScene.swift in Sources */,

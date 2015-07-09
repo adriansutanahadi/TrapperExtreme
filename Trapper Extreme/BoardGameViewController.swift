@@ -62,6 +62,10 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         return self.board.board!
     }
     
+    func scoreForScene(sender: BoardGameScene) -> (Int, Int)! {
+        return (self.board.blackScore,self.board.whiteScore)
+    }
+    
     func pieceTouched(sender: BoardGameScene, x: Int!, y: Int!)-> Bool {
         let move:Move!
         if currentSide!{
@@ -89,6 +93,8 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         self.p2 = HumanPlayer(player: PieceType.White)
         currentSide = true
     }
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

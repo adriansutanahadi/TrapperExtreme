@@ -14,6 +14,8 @@ protocol boardGameSceneDataSource: class{
         //Tell me if the touch made any change or not, since if it there is no change no need to update view
     func boardForScene(sender: BoardGameScene) -> [[BoardPiece?]]!
     func pieceTouched(sender: BoardGameScene,x:Int!,y:Int!) -> Bool
+    func scoreForScene(sender: BoardGameScene) -> (Int,Int)!
+    
 }
 
 
@@ -32,7 +34,7 @@ class BoardGameScene: SKScene {
     let boardPieceLayer = SKNode()
     let tilesLayer = SKNode()
     
-    
+    let scoreLabel = SKLabelNode(fontNamed:"Chalkboard")
     //Delegations
     weak var dataSource:boardGameSceneDataSource!
     
@@ -47,7 +49,8 @@ class BoardGameScene: SKScene {
         let (success, x, y) = convertPoint(location)
         if success {
             let valid = dataSource.pieceTouched(self,x: x,y: y)
-            print("\(x),\(y)\n")
+            updateScore()
+//            print("\(x),\(y)\n")
 //            if valid {
 //                updateboardPiece()
 //            }
@@ -77,6 +80,30 @@ class BoardGameScene: SKScene {
         setLayer()
         displayTiles()
         displayPiece()
+        displayScore()
+        displaySetting()
+    }
+    
+    private func displaySetting(){
+        
+    }
+    
+    
+    private func displayScore(){
+        /* Setup your scene here */
+        let boardDimension = dataSource.boardSizeForScene(self)
+        let (p1,p2) = dataSource.scoreForScene(self)
+        scoreLabel.fontColor = UIColor.blackColor()
+        scoreLabel.text = "\(p1) - \(p2)";
+        //scoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Top
+        scoreLabel.fontSize = 24;
+        scoreLabel.position = CGPoint(x:0, y:TileHeight * CGFloat(boardDimension)/2);
+        self.addChild(scoreLabel)
+    }
+    
+    private func updateScore(){
+        let (p1,p2) = dataSource.scoreForScene(self)
+        scoreLabel.text = "\(p1) - \(p2)";
     }
     
     //display initial piece
@@ -112,7 +139,7 @@ class BoardGameScene: SKScene {
 
     //Set background Image
     private func setBackground(){
-        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         let background = SKSpriteNode(imageNamed: "Background")
         addChild(background)
     }
@@ -152,5 +179,7 @@ class BoardGameScene: SKScene {
             return (false, 0, 0)  // invalid location
         }
     }
+    
+    
 
 }
