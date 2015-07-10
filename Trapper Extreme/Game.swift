@@ -41,7 +41,7 @@ class TrapperExtremeGame: BoardGame {
             }
             move = p2.playMove(self.board)
         }
-        let validMove = board.addPiece(move.player, x: move.x, y: move.y)
+        let validMove = board.addPiece(move)
         if validMove {
             self.currentSide = !self.currentSide
         }

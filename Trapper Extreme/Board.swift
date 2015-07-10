@@ -62,30 +62,30 @@ class Board{
         self.capturedCellsMap = []
     }
     
-    init(b: Board) {
-        self.boardDimension = b.boardDimension
+    init(board: Board) {
+        self.boardDimension = board.boardDimension
         
         self.board = Array(count:self.boardDimension, repeatedValue:Array(count:self.boardDimension, repeatedValue: nil))
         for x in 0...self.boardDimension-1 {
             for y in 0...self.boardDimension-1 {
-                let initialPiece = BoardPiece(pieceType: b.board[x][y]!.pieceType)
+                let initialPiece = BoardPiece(pieceType: board.board[x][y]!.pieceType)
                 self.board[x][y] = initialPiece
             }
         }
-        self.whiteScore = b.whiteScore
-        self.blackScore = b.blackScore
-        self.emptyCellCount = b.emptyCellCount
-        self.capturedCellsMap = b.capturedCellsMap
+        self.whiteScore = board.whiteScore
+        self.blackScore = board.blackScore
+        self.emptyCellCount = board.emptyCellCount
+        self.capturedCellsMap = board.capturedCellsMap
     }
     
     // Index starts from 0,0 . x axis left to right,y axis up to down.
     // Need to add more constraint, such as piece must beeiter Black or White ???
     // If legal return true,else false
-    func addPiece(piece:PieceType!,x:Int, y:Int) -> Bool{
-        if self.board[x][y]!.pieceType == PieceType.EmptyCell {
-            self.board[x][y]!.pieceType = piece
+    func addPiece(move: Move) -> Bool{
+        if self.board[move.x][move.y]!.pieceType == PieceType.EmptyCell {
+            self.board[move.x][move.y]!.pieceType = move.player
             self.emptyCellCount -= 1
-            updateBoard(Point(x: x, y: y), player: piece)
+            updateBoard(Point(x: move.x, y: move.y), player: move.player)
             updateScore()
             return true
         } else {
@@ -97,7 +97,23 @@ class Board{
         return self.emptyCellCount == 0
     }
     
-//    func isCaptured(c: PieceType) -> Bool {
+    func getMove(player: PieceType) -> [Move]? {
+        if player == PieceType.White || player == PieceType.Black || !isFinished() {
+            var moves: [Move] = []
+            for x in 0...self.boardDimension-1 {
+                for y in 0...self.boardDimension-1 {
+                    if self.board[x][y]!.pieceType == PieceType.EmptyCell {
+                        moves.append(Move(x: x, y: y, player: player))
+                    }
+                }
+            }
+            return moves
+        } else {
+            return nil
+        }
+    }
+    
+//    private func isCaptured(c: PieceType) -> Bool {
 //        if c == PieceType.CapturedBlack || c == PieceType.CapturedEmptyCell || c == PieceType.CapturedWhite {
 //            return true
 //        } else {
