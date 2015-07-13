@@ -9,41 +9,36 @@
 import Foundation
 
 protocol BoardGame {
-    var p1: Player { get }
-    var p2: Player { get }
+    var players: [Player] { get }
     var board: Board! { get }
     func acceptMove(sender: BoardGameViewController, x: Int!, y: Int!) -> Bool
 }
 
 class TrapperExtremeGame: BoardGame {
-    var p1: Player
-    var p2: Player
+    var players: [Player]
     var board: Board!
-    var currentSide: Bool!
-    init(p1: Player, p2: Player, boardSize: Int) {
-        self.p1 = p1
-        self.p2 = p2
+    var turn: Int
+    init(players: [Player], boardSize: Int) {
         self.board = Board(boardDimension: boardSize,initialValue: PieceType.EmptyCell)
-        // p1's turn = true, p2's turn = false
-        self.currentSide = true
+        self.players = players
+        self.turn = 0
     }
     
     func acceptMove(sender: BoardGameViewController, x: Int!, y: Int!) -> Bool {
         let move:Move!
-        if self.currentSide! {
-            if let human = p1 as? HumanPlayer {
-                human.humanInput(sender, x: x, y: y)
-            }
-            move = p1.playMove(self.board)
-        } else {
-            if let human = p2 as? HumanPlayer {
-                human.humanInput(sender, x: x, y: y)
-            }
-            move = p2.playMove(self.board)
+        if let human = self.players[self.turn] as? HumanPlayer {
+            human.humanInput(sender, x: x, y: y)
         }
+        move = self.players[self.turn].playMove(self.board)
         let validMove = board.addPiece(move)
         if validMove {
-            self.currentSide = !self.currentSide
+            self.turn++
+            if self.turn == players.count {
+                self.turn = 0
+            }
+            if self.players[self.turn] as? AIPlayer != nil {
+                acceptMove(sender, x: x, y: y)
+            }
         }
         //TODO
         return validMove

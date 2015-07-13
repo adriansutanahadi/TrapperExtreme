@@ -36,7 +36,7 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
     }
     
-    func setUpScene(){
+    func setUpScene() {
         // Configure the view
         let skView = view! as! SKView
         skView.multipleTouchEnabled = false
@@ -64,10 +64,10 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
         return self.game.acceptMove(self, x: x, y: y)
     }
     
-    func setUpGame(){
+    func setUpGame() {
         self.p1 = HumanPlayer(player: PieceType.White)
         self.p2 = MinimaxAIPlayer(player: PieceType.Black)
-        self.game = TrapperExtremeGame(p1: self.p1, p2: self.p2, boardSize: self.gameSize)
+        self.game = TrapperExtremeGame(players: [self.p1, self.p2], boardSize: self.gameSize)
     }
     
     override func viewDidLoad() {
