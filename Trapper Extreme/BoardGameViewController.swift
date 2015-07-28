@@ -67,7 +67,8 @@ class BoardGameViewController: UIViewController,boardGameSceneDataSource {
     }
     
     func settingsButtonPressed(sender:BoardGameScene){
-        
+        NSLog("Setting button Pressed,currently implementing refresh game")
+        setUpBoard()
     }
 
     

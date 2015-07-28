@@ -16,7 +16,6 @@ protocol boardGameSceneDataSource: class{
     func pieceTouched(sender: BoardGameScene,x:Int!,y:Int!) -> Bool
     func scoreForScene(sender: BoardGameScene) -> (Int,Int)!
     func settingsButtonPressed(sender:BoardGameScene)
-    
 }
 
 
@@ -28,7 +27,6 @@ class BoardGameScene: SKScene {
     let TileWidth: CGFloat = 32.0
     let TileHeight: CGFloat = 36.0
     
-   
     
     
     let boardGameLayer = SKNode()
@@ -41,42 +39,34 @@ class BoardGameScene: SKScene {
     
     
 
-    
+    //Todo setting button pressed ???
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         // 1
         let touch = touches.first as! UITouch
-        let location = touch.locationInNode(boardPieceLayer)
+        let pieceLocation = touch.locationInNode(boardPieceLayer)
         // 2
-        let (success, x, y) = convertPoint(location)
-        if success {
-            let valid = dataSource.pieceTouched(self,x: x,y: y)
-            updateScore()
-//            print("\(x),\(y)\n")
-//            if valid {
-//                updateboardPiece()
-//            }
-            
-            // 3
-            //Controller work
-            //board.addPiece(PieceType.White,x:x,y:y)
-
+        let (pieceTouched, x, y) = convertPoint(pieceLocation)
+        if pieceTouched {
+            let validMove = dataSource.pieceTouched(self,x: x,y: y)
+            if validMove {
+                updateScore()
+            }
+        } else {
+            let location = touch.locationInNode(self)
+            NSLog("fail Touch")
+            if let nodeName = self.nodeAtPoint(location).name{
+                if nodeName == "SettingButton"{
+                    dataSource.settingsButtonPressed(self)
+                }
+            }
         }
 
     }
     
-//    func updateboardPiece(){
-//        for sprite in boardPieces{
-//            let (sucess,x,y) = convertPoint(sprite.position)
-//            assert(sucess)
-//            if sucess {
-//                sprite.texture = SKTexture(imageNamed: dataSource.spriteForScene(self, x: x, y: y))
-//            }
-//        }
-//    }
-    
-
     
     override func didMoveToView(view: SKView) {
+        scene!.scaleMode = SKSceneScaleMode.ResizeFill
+        
         setBackground()
         setLayer()
         displayTiles()
@@ -86,6 +76,14 @@ class BoardGameScene: SKScene {
     }
     
     private func displaySetting(){
+        let boardDimension = dataSource.boardSizeForScene(self)
+        let settingButton = SKSpriteNode(imageNamed: "SettingButton")
+        settingButton.name = "SettingButton"
+        settingButton.size = CGSize(width: TileWidth,height:TileHeight)
+
+        settingButton.position = CGPoint(x:self.size.width/2 - TileWidth, y: self.size.height/2 - TileHeight )
+        settingButton.userInteractionEnabled = true
+        boardGameLayer.addChild(settingButton)
         
     }
     
@@ -95,10 +93,10 @@ class BoardGameScene: SKScene {
         let boardDimension = dataSource.boardSizeForScene(self)
         let (p1,p2) = dataSource.scoreForScene(self)
         scoreLabel.fontColor = UIColor.blackColor()
-        scoreLabel.text = "\(p1) - \(p2)";
+        scoreLabel.text = "\(p1) - \(p2)"
         //scoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Top
-        scoreLabel.fontSize = 24;
-        scoreLabel.position = CGPoint(x:0, y:TileHeight * CGFloat(boardDimension)/2);
+        scoreLabel.fontSize = 24
+        scoreLabel.position = CGPoint(x:0, y:TileHeight * CGFloat(boardDimension)/2)
         self.addChild(scoreLabel)
     }
     
