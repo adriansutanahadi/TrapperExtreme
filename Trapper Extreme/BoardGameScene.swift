@@ -24,16 +24,22 @@ class BoardGameScene: SKScene {
     //var boardPieces:[SKSpriteNode]! = []
 
     
-    let TileWidth: CGFloat = 32.0
-    let TileHeight: CGFloat = 36.0
+    let tileWidth: CGFloat = 40.0
+    let tileHeight: CGFloat = 40.0
     
-    
+    var tileSize:CGSize {
+        get {
+            return CGSize(width: tileWidth, height: tileHeight)
+        }
+    }
     
     let boardGameLayer = SKNode()
     let boardPieceLayer = SKNode()
     let tilesLayer = SKNode()
     
     let scoreLabel = SKLabelNode(fontNamed:"Chalkboard")
+    let settingButton = SKSpriteNode(imageNamed: "SettingButton")
+  
     //Delegations
     weak var dataSource:boardGameSceneDataSource!
     
@@ -42,48 +48,81 @@ class BoardGameScene: SKScene {
     //Todo setting button pressed ???
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         // 1
+//        
+//        let touch = touches.first as! UITouch
+//        let location = touch.locationInNode(self)
+//        let node = self.nodeAtPoint(location)
+//        NSLog("\(node.name), \(location)")
+//        
+////                let (pieceTouched, x, y) = convertPoint(location)
+////        NSLog("\(x,y))-
+////                if pieceTouched {
+////                    let validMove = dataSource.pieceTouched(self,x: x,y: y)
+////                    if validMove {
+////                        updateScore()
+////                    }
+// //               }
+        
+// PERFECT CODE
         let touch = touches.first as! UITouch
+        //should be boardPieceLayer debug using self now...
         let pieceLocation = touch.locationInNode(boardPieceLayer)
         // 2
         let (pieceTouched, x, y) = convertPoint(pieceLocation)
+       
         if pieceTouched {
             let validMove = dataSource.pieceTouched(self,x: x,y: y)
             if validMove {
                 updateScore()
             }
-        } else {
-            let location = touch.locationInNode(self)
-            NSLog("fail Touch")
-            if let nodeName = self.nodeAtPoint(location).name{
-                if nodeName == "SettingButton"{
-                    dataSource.settingsButtonPressed(self)
-                }
-            }
         }
-
+        
+        //Uses different layer, expect to use self
+        else {
+            let location = touch.locationInNode(self)
+            let node = nodeAtPoint(location)
+        
+         
+                if node.name == "SettingButton"{
+                    dataSource.settingsButtonPressed(self)
+            }
+          
+        }
+      
     }
     
     
     override func didMoveToView(view: SKView) {
-        scene!.scaleMode = SKSceneScaleMode.ResizeFill
+        scene!.scaleMode = SKSceneScaleMode.AspectFill
         
         setBackground()
+        
         setLayer()
+       
         displayTiles()
         displayPiece()
-        displayScore()
         displaySetting()
+        displayScore()
+        
     }
     
     private func displaySetting(){
         let boardDimension = dataSource.boardSizeForScene(self)
-        let settingButton = SKSpriteNode(imageNamed: "SettingButton")
+        
+       
         settingButton.name = "SettingButton"
-        settingButton.size = CGSize(width: TileWidth,height:TileHeight)
 
-        settingButton.position = CGPoint(x:self.size.width/2 - TileWidth, y: self.size.height/2 - TileHeight )
-        settingButton.userInteractionEnabled = true
-        boardGameLayer.addChild(settingButton)
+        settingButton.size = tileSize
+      
+    
+        settingButton.position = CGPoint(x:self.size.width/2 - tileWidth, y: self.size.height/2 - tileHeight )
+
+        
+        
+        
+        //THIS CODE CAUSE BUG BUT WHY ?
+         //settingButton.userInteractionEnabled = true
+        self.addChild(settingButton)
         
     }
     
@@ -96,13 +135,14 @@ class BoardGameScene: SKScene {
         scoreLabel.text = "\(p1) - \(p2)"
         //scoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Top
         scoreLabel.fontSize = 24
-        scoreLabel.position = CGPoint(x:0, y:TileHeight * CGFloat(boardDimension)/2)
+        scoreLabel.position = CGPoint(x:0, y:tileWidth * CGFloat(boardDimension)/2)
+        //scoreLabel.zRotation = CGFloat(M_PI_2)
         self.addChild(scoreLabel)
     }
     
     private func updateScore(){
         let (p1,p2) = dataSource.scoreForScene(self)
-        scoreLabel.text = "\(p1) - \(p2)";
+        scoreLabel.text = "\(p2) - \(p1)";
     }
     
     //display initial piece
@@ -111,11 +151,11 @@ class BoardGameScene: SKScene {
         let board = dataSource.boardForScene(self)
         for x in 0..<boardDimension{
             for y in 0..<boardDimension{
-            
-                //print(board.board[x][y]!.spriteName)
                 board[x][y]!.sprite!.position = positionForView(x,y: y)
+                  board[x][y]!.sprite!.name = "Piece \(x,y)"
+                board[x][y]!.sprite!.size = tileSize
                 boardPieceLayer.addChild(board[x][y]!.sprite!)
-//              boardPieces.append(sprite)
+
             }
         }
     }
@@ -126,6 +166,8 @@ class BoardGameScene: SKScene {
             for y in 0..<boardDimension{
                 let tile = SKSpriteNode(imageNamed: "Tile")
                 tile.position = positionForView(x,y: y)
+                tile.size = tileSize
+          //      NSLog("tiles position \(tile.position)")
                 tilesLayer.addChild(tile)
             }
         }
@@ -150,8 +192,8 @@ class BoardGameScene: SKScene {
         let boardDimension = dataSource.boardSizeForScene(self)
         addChild(boardGameLayer)
         let layerPosition = CGPoint(
-            x: -TileWidth * CGFloat(boardDimension) / 2,
-            y: -TileHeight * CGFloat(boardDimension) / 2)
+            x: -tileWidth * CGFloat(boardDimension) / 2,
+            y: -tileHeight * CGFloat(boardDimension) / 2)
         tilesLayer.position = layerPosition
         boardGameLayer.addChild(tilesLayer)
         
@@ -165,15 +207,15 @@ class BoardGameScene: SKScene {
     private func positionForView(x: Int, y: Int) -> CGPoint {
         let boardDimension = dataSource.boardSizeForScene(self)
         return CGPoint(
-            x: CGFloat(x)*TileWidth + TileWidth/2,
-            y: CGFloat(boardDimension-1-y)*TileHeight + TileHeight/2)
+            x: CGFloat(x)*tileWidth + tileWidth/2,
+            y: CGFloat(boardDimension-1-y)*tileHeight + tileHeight/2)
     }
     
     func convertPoint(point: CGPoint) -> (success: Bool, x: Int, y: Int) {
         let boardDimension = dataSource.boardSizeForScene(self)
-        if point.x >= 0 && point.x < CGFloat(boardDimension)*TileWidth &&
-            point.y >= 0 && point.y < CGFloat(boardDimension)*TileHeight {
-                return (true, Int(point.x / TileWidth), boardDimension-1 - Int(point.y / TileHeight) )
+        if point.x >= 0 && point.x < CGFloat(boardDimension)*tileWidth &&
+            point.y >= 0 && point.y < CGFloat(boardDimension)*tileHeight {
+                return (true, Int(point.x / tileWidth), boardDimension-1 - Int(point.y / tileHeight) )
         } else {
             return (false, 0, 0)  // invalid location
         }
